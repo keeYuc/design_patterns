@@ -5,9 +5,7 @@ import "testing"
 func TestDecorator(t *testing.T) {
 	qingtianzhu := car{}
 
-	feiji := NewDrone(&qingtianzhu)
-	feiji.Start()
+	NewDrone(&qingtianzhu).Start()
 
-	chuan := NewShip(&qingtianzhu)
-	chuan.Start()
+	NewShip(&qingtianzhu).Start()
 }
