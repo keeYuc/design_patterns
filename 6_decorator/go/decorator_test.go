@@ -12,5 +12,4 @@ func TestDecorator(t *testing.T) {
 	NewDrone(&qingtianzhu).Start()
 
 	NewShip(&qingtianzhu).Start()
-
 }
