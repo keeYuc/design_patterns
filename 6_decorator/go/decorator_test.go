@@ -1,6 +1,8 @@
 package decorator
 
-import "testing"
+import (
+	"testing"
+)
 
 func TestDecorator(t *testing.T) {
 	qingtianzhu := car{}
@@ -10,4 +12,5 @@ func TestDecorator(t *testing.T) {
 	NewDrone(&qingtianzhu).Start()
 
 	NewShip(&qingtianzhu).Start()
+
 }
