@@ -6,11 +6,12 @@ struct Drone;
 struct Car;
 struct Factory;
 
-struct Test(Car);
+struct Test(Box<Car>);
 
 impl Test {
     fn new() -> Self {
-        Test
+        let a = Box::new(Car);
+        Test { 0: a }
     }
 }
 
@@ -44,4 +45,7 @@ fn test_factory() {
     assert_eq!(f.get_machine(1).run(), 1);
     assert_eq!(f.get_machine(2).run(), 2)
 }
-fn main() {}
+fn main() {
+    let a = Test::new();
+    a.0.run();
+}
