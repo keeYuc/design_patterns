@@ -34,5 +34,6 @@ impl Ship {
 }
 
 fn main() {
-    Car::new(Box::new(Org))
+    Car::new(Box::new(Org)).we_move();
+    Ship::new(Box::new(Org)).we_move();
 }
