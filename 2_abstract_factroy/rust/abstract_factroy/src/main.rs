@@ -3,16 +3,31 @@ trait Factory {
 }
 
 trait Goods {
-    fn buy();
+    fn buy(&self);
 }
 
 struct Amd;
+struct Gpu;
+
+impl Goods for Gpu {
+    fn buy(&self) {
+        println!("buy buy buy")
+    }
+}
 
 impl Factory for Amd {
+    fn produce() -> Box<dyn Goods> {
+        Box::new(Gpu)
+    }
+}
+
+impl Amd {
     fn new() -> Self {
         Amd
     }
-    fn produce() -> Box<dyn Goods> {}
 }
 
-fn main() {}
+fn main() {
+    let a = Amd::new();
+    a.produce();
+}
