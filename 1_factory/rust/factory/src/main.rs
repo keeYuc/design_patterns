@@ -5,7 +5,6 @@ trait Machine {
 struct Drone;
 struct Car;
 struct Factory;
-
 impl Factory {
     fn new() -> Self {
         Factory
