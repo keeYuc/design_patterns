@@ -19,7 +19,7 @@ impl Car {
     }
     fn we_move(&self) {
         self.o.we_move();
-        println!("im car")
+        println!("=> car")
     }
 }
 
@@ -29,7 +29,7 @@ impl Ship {
     }
     fn we_move(&self) {
         self.o.we_move();
-        println!("im ship")
+        println!("=> ship")
     }
 }
 
