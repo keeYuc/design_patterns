@@ -1,5 +1,7 @@
 trait Factory {
-    fn produce() -> Box<dyn Goods>;
+    fn produces() -> Box<dyn Goods> {
+        Box::new(Gpu)
+    }
 }
 
 trait Goods {
@@ -15,11 +17,7 @@ impl Goods for Gpu {
     }
 }
 
-impl Factory for Amd {
-    fn produce() -> Box<dyn Goods> {
-        Box::new(Gpu)
-    }
-}
+impl Factory for Amd {}
 
 impl Amd {
     fn new() -> Self {
@@ -27,7 +25,8 @@ impl Amd {
     }
 }
 
-fn main() {
-    let a = Amd::new();
-    a.produce();
+fn produce(f: impl Factory) {
+    f.produces();
 }
+
+fn main() {}
