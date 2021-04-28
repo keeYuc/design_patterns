@@ -1,14 +1,18 @@
-fn main() {}
+fn main() {
+    let cb = CarBuild::new();
+    cb.build(String::from("engine"), String::from("wheel"));
+    // .add(Pattern::Tail {});
+}
 //简约版建造者模式
 
 trait Build {
-    fn build(arg1: String, arg2: String) -> Car;
-    fn add(c: &mut Car, pattern: Pattern, arg: String) -> &mut Car;
+    fn build(&self, arg1: String, arg2: String) -> Car;
+    fn add(c: Car, pattern: Pattern, arg: String) -> Car;
 }
 
 enum Pattern {
-    Tail(String),
-    Sound(String),
+    Tail,
+    Sound,
 }
 
 struct CarBuild;
@@ -20,8 +24,14 @@ struct Car {
     sound: String,
 }
 
+impl CarBuild {
+    fn new() -> Self {
+        CarBuild
+    }
+}
+
 impl Build for CarBuild {
-    fn build(engine: String, wheel: String) -> Car {
+    fn build(&self, engine: String, wheel: String) -> Car {
         Car {
             engine,
             wheel,
@@ -29,7 +39,7 @@ impl Build for CarBuild {
             sound: String::new(),
         }
     }
-    fn add(c: &mut Car, pattern: Pattern, arg: String) -> &mut Car {
+    fn add(c: Car, pattern: Pattern, arg: String) -> Car {
         match pattern {
             Pattern::Sound(_) => {
                 c.sound = arg;
