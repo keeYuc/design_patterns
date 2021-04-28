@@ -39,7 +39,7 @@ impl Build for CarBuild {
             sound: String::new(),
         }
     }
-    fn add(c: Car, pattern: Pattern, arg: String) -> Car {
+    fn add(mut c: Car, pattern: Pattern, arg: String) -> Car {
         match pattern {
             Pattern::Sound(_) => {
                 c.sound = arg;
