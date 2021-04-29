@@ -2,9 +2,24 @@ fn main() {
     let cb = CarBuild::new();
     let mut lbjni = cb.build(String::from("engine"), String::from("wheel"));
     let mut fll = cb.build(String::from("engine"), String::from("wheel"));
-    cb.add(&mut fll, Pattern::Sound, String::from("漫步者"));
-    cb.add(&mut lbjni, Pattern::Sound, String::from("海森赛尔"));
-    cb.add(&mut lbjni, Pattern::Tail, String::from("尾翼1号"));
+    cb.add(
+        &mut fll,
+        Pattern::Sound {
+            0: String::from("漫步者"),
+        },
+    );
+    cb.add(
+        &mut lbjni,
+        Pattern::Sound {
+            0: String::from("海森赛尔"),
+        },
+    );
+    cb.add(
+        &mut lbjni,
+        Pattern::Tail {
+            0: String::from("尾翼1号"),
+        },
+    );
     println!("{:?}", lbjni);
     println!("{:?}", fll)
 }
@@ -12,12 +27,12 @@ fn main() {
 
 trait Build {
     fn build(&self, arg1: String, arg2: String) -> Car;
-    fn add<'a>(&self, c: &'a mut Car, p: Pattern, s: String);
+    fn add<'a>(&self, c: &'a mut Car, p: Pattern);
 }
 
 enum Pattern {
-    Tail,
-    Sound,
+    Tail(String),
+    Sound(String),
 }
 
 struct CarBuild;
@@ -45,13 +60,13 @@ impl Build for CarBuild {
             sound: String::new(),
         }
     }
-    fn add<'a>(&self, c: &'a mut Car, pattern: Pattern, arg: String) {
+    fn add<'a>(&self, c: &'a mut Car, pattern: Pattern) {
         match pattern {
-            Pattern::Sound => {
-                c.sound = arg;
+            Pattern::Sound(str) => {
+                c.sound = str;
             }
-            Pattern::Tail => {
-                c.tail = arg;
+            Pattern::Tail(str) => {
+                c.tail = str;
             }
         }
     }
